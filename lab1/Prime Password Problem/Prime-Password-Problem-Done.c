@@ -45,6 +45,7 @@ int main() {
 
     // If there's a prime factor greater than sqrt(input_num)
     if (input_num > 1) {
+        // If input_num its self isn't a prime number plus x sign
         if (!first) {
             printf(" x ");
         }
