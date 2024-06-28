@@ -105,15 +105,16 @@ void free_list(struct node *head) {
 
 int main() {
     struct node *head;
-    int number;
+    long number;
     printf("Enter a number: ");
     scanf("%d", &number);
+
     head = primeFactor(number); // Correctly assign the returned head
 
     printf("%d = ", number);
     print_list2(head); // Print the prime factors
 
     free_list(head); // Free the allocated memory
-
+    
     return 0;
 }
