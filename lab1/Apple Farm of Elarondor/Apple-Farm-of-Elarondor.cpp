@@ -2,9 +2,9 @@
 using namespace std;
 
 // Function to print the 2D array in a spiral order for a given block
-void cast_spell(int *area, int rows, int cols, int start_row, int start_col) {
+void cast_spell(int *area, int rows, int cols, int start_row, int start_col, int range_x, int range_y) {
     int top = start_row, left = start_col;
-    int bottom = start_row + 1, right = start_col + 1;
+    int bottom = start_row + range_y - 1, right = start_col + range_x - 1;
 
     while (top <= bottom && left <= right) {
         // Go Right
@@ -47,6 +47,8 @@ int main() {
 
     // Calculate cast_area (not used in this version of the code)
     int cast_area = mana / mana_cost;
+    int cast_range_x, cast_range_y;
+    cast_range_x = mana_cost, cast_range_y = cast_area / mana_cost;
 
     int area[rows][cols];
     for (int i = 0; i < rows; i++) {
@@ -65,11 +67,15 @@ int main() {
     }
 
     // Splitting the array into 2x2 blocks and printing in spiral order
-    for (int start_row = 0; start_row < rows; start_row += 2) {
-        for (int start_col = 0; start_col < cols; start_col += 2) {
-            cout << "Spiral order for block starting at (" << start_row << ", " << start_col << "): ";
-            cast_spell((int *)area, rows, cols, start_row, start_col);
-            cout << endl;
+    for (int start_row = 0; start_row < rows; start_row += 1) {
+        for (int start_col = 0; start_col < cols; start_col += 1) {
+            // For make sure cast-area not out of bound
+            if (start_row+cast_range_x < rows && start_col+cast_range_y < cols){
+                cout << "Spiral order for block starting at (" << start_row << ", " << start_col << "): ";
+                cast_spell((int *)area, rows, cols, start_row, start_col, cast_range_x, cast_range_y);
+                cout << endl; 
+            }
+            
         }
     }
 
