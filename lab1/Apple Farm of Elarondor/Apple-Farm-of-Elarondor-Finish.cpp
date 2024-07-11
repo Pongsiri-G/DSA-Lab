@@ -80,8 +80,6 @@ int main() {
             for (int range_x = 1; range_x <= cast_area; ++range_x) {
                 if (cast_area % range_x == 0) {
                     int range_y = cast_area / range_x;
-                    ///cout << range_x << " * " << range_y << endl;
-                    if ((range_x == 1 && range_y != 1) || (range_x != 1 && range_y == 1)) continue;
                     // Splitting the area for calculate score
                     for (int start_row = 0; start_row <= rows - range_y; ++start_row) {
                         for (int start_col = 0; start_col <= cols - range_x; ++start_col) {
